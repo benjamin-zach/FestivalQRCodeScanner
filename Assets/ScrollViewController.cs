@@ -17,9 +17,16 @@ public class ScrollViewController : MonoBehaviour
 			Destroy(child.gameObject);
 		}
 
-		foreach(var model in data)
+		foreach(var code in MainSceneController.expectedCodes)
 		{
-			ScrollViewElementController.Instantiate(prefab, elementsContainer, model);
+			ScannedCodes.ScannedCodeDataModel model = data.Find(item => item.code == code);
+			bool present = true;
+			if(model == null)
+			{
+				model = new ScannedCodes.ScannedCodeDataModel() { code = code, scannedTime = System.DateTime.Now };
+				present = false;
+			}
+			ScrollViewElementController.Instantiate(prefab, elementsContainer, model, present);
 		}
 	}
 }

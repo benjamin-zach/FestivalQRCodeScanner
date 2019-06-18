@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -33,8 +33,8 @@ namespace BarcodeScanner
 			ParserTryHarder = false;
 			
 			WebcamDefaultDeviceName = (WebCamTexture.devices.Length > 0) ? WebCamTexture.devices.First().name : "";
-			WebcamRequestedWidth = 512;
-			WebcamRequestedHeight = 512;
+			WebcamRequestedWidth = 1440;
+			WebcamRequestedHeight = 1440;
 			WebcamFilterMode = FilterMode.Trilinear;
 
 			// Device dependent settings

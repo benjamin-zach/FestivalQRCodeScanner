@@ -47,9 +47,14 @@ public class ScannedCodes : MonoBehaviour
 			data.Remove(d);
 	}
 
-	public void Load()
+	public void Reset()
 	{
 		data = new List<ScannedCodeDataModel>();
+	}
+
+	public void Load()
+	{
+		Reset();
 
 		int index = 0;
 		while(PlayerPrefs.HasKey(savePrefix + index.ToString()))
@@ -69,6 +74,12 @@ public class ScannedCodes : MonoBehaviour
 	public void Save()
 	{
 		int index = 0;
+		while (PlayerPrefs.HasKey(savePrefix + index.ToString()))
+		{
+			PlayerPrefs.DeleteKey(savePrefix + index.ToString());
+		}
+
+		index = 0;
 		foreach(var value in data)
 		{
 			var line = string.Format("{0},{1}", value.code, value.scannedTime.ToString("dd/MM HH:mm"));
