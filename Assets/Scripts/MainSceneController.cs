@@ -94,7 +94,9 @@ public class MainSceneController : MonoBehaviour
 	// Disable Screen Rotation on that screen
 	void Awake()
 	{
+		statusText.text = "SORTING CODES";
 		expectedCodes.Sort();
+		statusText.text = "";
 		Screen.autorotateToPortrait = false;
 		Screen.autorotateToPortraitUpsideDown = false;
 		Screen.orientation = ScreenOrientation.Portrait;
@@ -165,8 +167,6 @@ public class MainSceneController : MonoBehaviour
 	private void OnQrCodeRecognized(string barCodeType, string barCodeValue)
 	{
 		BarcodeScanner.Stop();
-		RestartTime += Time.realtimeSinceStartup + 1f;
-		lastScannedCode.text = barCodeValue;
 
 		// Feedback
 		Audio.Play();
@@ -196,6 +196,8 @@ public class MainSceneController : MonoBehaviour
 			scrollViewController.Init(scannedCodes.data);
 			backgroundImage.color = Color.green;
 		}
+		RestartTime += Time.realtimeSinceStartup + 2.5f;
+		lastScannedCode.text = barCodeValue;
 	}
 
 	private void OnOptionsButton()
